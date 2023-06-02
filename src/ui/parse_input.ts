@@ -1,24 +1,26 @@
-import { Hole, HOLES } from '../chapter_1/chapter_1.types';
+import { Hole, HOLES } from "../chapter_1/chapter_1.types";
+import { Console, CONSOLES } from "../chapter_7/chapter_7_whats_next";
 
-// 💡 This `parseHoleInput` function exists to keep user input (which can be anything)
-//    away from our logic, which we want to keep clean using our nice neat types like `Hole`
-//    This function translates all possible user inputs into either:
-//           a Hole    👈 if the input is valid
-//			 undefined 👈 if the input is invalid
 export function parseHoleInput(input: string): Hole | undefined {
-	//  It might seem like we know this is a number,
-	//  but of course the user can enter any nonsense to the prompt!
-	const chosenHole = parseInt(input);
+  const chosenHole = parseInt(input);
 
-	// now we verify it's valid
-	if (isNaN(chosenHole)) {
-		return undefined;
-	}
+  if (isNaN(chosenHole) || chosenHole < 0 || chosenHole > HOLES.length - 1) {
+    return undefined;
+  }
 
-	if (chosenHole < 0 || chosenHole > HOLES.length - 1) {
-		return undefined;
-	}
+  return HOLES[chosenHole];
+}
 
-	// we know the input is valid so we can return a Hole
-	return HOLES[chosenHole];
+export function parseConsoleInput(input: string): Console | undefined {
+  const chosenConsole = parseInt(input);
+
+  if (
+    isNaN(chosenConsole) ||
+    chosenConsole < 0 ||
+    chosenConsole > CONSOLES.length - 1
+  ) {
+    return undefined;
+  }
+
+  return CONSOLES[chosenConsole];
 }
