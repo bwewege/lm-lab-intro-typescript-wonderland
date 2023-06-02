@@ -1,5 +1,6 @@
 import { endAdventure, haveAdventures } from "../..";
 import { askQuestion, clear, print } from "../ui/console";
+import { whatsNext } from "../chapter_7/chapter_7_whats_next";
 
 // ⚠️ This is a very unusual type setup. It's not a great idea in the real world
 // to nest so many properties with the exact same name.
@@ -36,7 +37,7 @@ export function wakeUp(): void {
       "✅ CONGRATULATIONS! You successfully made it through Wonderland! 🥳"
     );
 
-    return askQuestion("Press ENTER to re-enter Wonderland! ", haveAdventures);
+    return askQuestion("Press ENTER to see what you do next! ", whatsNext);
   } else {
     print("You are unable to wake up! 😱");
     return endAdventure();
